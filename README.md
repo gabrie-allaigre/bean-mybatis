@@ -17,6 +17,37 @@ The overlay allows:
 
 ## Example
 
+### With standard bean
+
+```java
+@Entity(name = "T_COUNTRY")
+public class CountryBean {
+
+    @Id
+    @Column(name = "ID")
+    private String id;
+    @Version
+    @Column(name = "VERSION")
+    private int version;
+    @Column(name = "CODE")
+    private String code;
+    @NlsColumn(name = "NAME")
+    private String name;
+    @Column(name = "CONTINENT_ID")
+    private IId continentId;
+    @Association(propertySource = "continentId")
+    private ContinentBean continent;
+    @Collection(propertyTarget = "countryId", orderBy = @OrderBy("code"))
+    private List<StateBean> states;
+    
+    public String getId() {        return id;    }
+    public void setId(String id) {        this.id = id;    }    
+...
+}
+```
+
+## With ComponentBean
+
 ```java
 @ComponentBean
 @Entity(name = "T_COUNTRY")
@@ -54,7 +85,7 @@ public interface ICountry extends IComponent {
     
     void setContinent(IContinent continent);
 
-    @Collection(propertyTarget = StateFields.countryId, orderBy = @OrderBy(StateFields.code)
+    @Collection(propertyTarget = StateFields.countryId, orderBy = @OrderBy(StateFields.code))
     List<IState> getStates();
     
     void setStates(List<IState> states);
