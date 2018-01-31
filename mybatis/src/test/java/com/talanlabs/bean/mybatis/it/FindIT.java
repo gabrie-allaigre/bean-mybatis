@@ -4,6 +4,7 @@ import com.talanlabs.bean.mybatis.data.Country2Bean;
 import com.talanlabs.bean.mybatis.data.CountryBean;
 import com.talanlabs.bean.mybatis.data.Test2Bean;
 import com.talanlabs.bean.mybatis.data.Test3Bean;
+import com.talanlabs.bean.mybatis.data.Test4Bean;
 import com.talanlabs.bean.mybatis.data.Train2Bean;
 import com.talanlabs.bean.mybatis.data.Train3Bean;
 import com.talanlabs.bean.mybatis.data.Train4Bean;
@@ -150,5 +151,14 @@ public class FindIT extends AbstractHSQLIntegration {
         Assertions.assertThat(test3.getName2()).isEqualTo("Poire");
         Assertions.assertThat(test3.getStartCountry().getName()).isEqualTo("Fromage");
         Assertions.assertThat(test3.getEndCountry().getName()).isEqualTo("england");
+    }
+
+    @Test
+    public void testFindTest4ById() {
+        getDefaultNlsColumnHandler().setLanguageCode("fra");
+        Test4Bean test4 = getSqlSessionManager().selectOne(StatementNameHelper.buildFindEntityByIdKey(Test4Bean.class), IdFactory.IdString.from("7"));
+        Assertions.assertThat(test4.getWagon()).isNotNull();
+        Assertions.assertThat(test4.getWagon().getTrainId()).isEqualTo(IdFactory.IdString.from("7"));
+        Assertions.assertThat(test4.getWagon().getCode()).isEqualTo("G");
     }
 }

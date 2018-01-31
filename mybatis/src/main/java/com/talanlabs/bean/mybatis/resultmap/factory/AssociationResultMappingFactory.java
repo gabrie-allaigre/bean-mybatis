@@ -45,7 +45,7 @@ public class AssociationResultMappingFactory extends AbstractResultMappingFactor
 
         String[] propertyTarget = metaBean.addIdPropertyIfEmpty(javaType, association.propertyTarget());
 
-        String[] columnTarget = metaBean.prepareColumns(beanClass, propertyTarget);
+        String[] columnTarget = metaBean.prepareColumns(javaType, propertyTarget);
         resultMappingBuilder.notNullColumns(Sets.newHashSet(columnTarget));
 
         int ad = association.nestedOption().depth() > 0 ? association.nestedOption().depth() - 1 : association.nestedOption().depth();

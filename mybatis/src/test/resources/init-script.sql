@@ -79,7 +79,8 @@ INSERT INTO t_wagon (id, version, train_id, code, position) VALUES
 ('3', 0, '1', 'A', 1),
 ('4', 0, '2', '0', 1),
 ('5', 0, '2', '1', 2),
-('6', 0, '1', 'D', 4);
+('6', 0, '1', 'D', 4),
+('7', 0, '7', 'G', 4);
 
 DROP TABLE t_container
 IF EXISTS;
@@ -129,3 +130,14 @@ INSERT INTO t_test2 (id, version,name1,name2, start_country_id, end_country_id) 
   ('3', 0,'Gaby3','Toto3', '2', '3'),
   ('4', 0,'Gaby4','Toto4', '5', '6'),
   ('5', 0,'Gaby5','Toto5', '1', '5');
+
+DROP TABLE t_test3
+IF EXISTS;
+
+CREATE TABLE t_test3 (
+  id             VARCHAR(256),
+  version        INT
+);
+
+INSERT INTO t_test3 (id, version) VALUES
+  ('7', 0);
