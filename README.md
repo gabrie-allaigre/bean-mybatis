@@ -1,4 +1,4 @@
-# MyBatis Component Bean
+# Bean MyBatis
 
 ## Description
 
